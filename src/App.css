@@ -1,0 +1,446 @@
+:root {
+  --primary: #00f2fe;    /* Electric Cyan */
+  --secondary: #39ff14;  /* Neon Green */
+  --bg: #0a0a0b;         /* Deep Space Black */
+  --glass: rgba(255, 255, 255, 0.03);
+  --border: rgba(0, 242, 254, 0.2);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Space Grotesk', sans-serif; }
+
+body { background: var(--bg); color: white; overflow-x: hidden; }
+
+/* --- Cyber-Nav Dock --- */
+.nav-dock {
+  position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+  background: rgba(10, 10, 11, 0.8); backdrop-filter: blur(15px);
+  padding: 12px 25px; border-radius: 50px; border: 1px solid var(--border);
+  display: flex; gap: 20px; z-index: 1000; box-shadow: 0 0 20px rgba(0, 242, 254, 0.1);
+}
+
+.nav-item {
+  color: #666; cursor: pointer; font-family: 'Orbitron', sans-serif; font-size: 0.7rem;
+  transition: 0.3s; text-transform: uppercase; letter-spacing: 1px;
+}
+
+.nav-item.active { color: var(--primary); text-shadow: 0 0 10px var(--primary); }
+
+/* --- Main Layout --- */
+.app-container {
+  width: 100vw; min-height: 100vh; padding: 40px 5%;
+  display: flex; flex-direction: column; align-items: center;
+}
+
+/* --- Research Hub: Slide & Book Logic --- */
+.research-container { width: 100%; max-width: 800px; margin-top: 50px; perspective: 1000px; }
+
+.cyber-slide {
+  background: var(--glass); padding: 40px; border-radius: 15px;
+  border-left: 4px solid var(--primary); animation: slideIn 0.5s ease;
+}
+
+/* --- Elite Cyber Deck CSS (Lines 42-104) --- */
+.cyber-deck {
+  width: 100%;
+  background: rgba(15, 15, 15, 0.85);
+  backdrop-filter: blur(12px); /* स्टाइलिश ट्रांसपेरेंट लुक के लिए */
+  border: 1px solid rgba(0, 242, 254, 0.15);
+  margin-bottom: 20px;
+  position: relative;
+  transition: 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  border-radius: 4px;
+}
+
+/* पट्टी वाला स्टाइलिश लुक (Strip View) */
+.cyber-deck.strip, .cyber-deck.static-strip {
+  min-height: 85px;
+  border-left: 5px solid var(--primary);
+  display: flex;
+  align-items: center;
+  padding: 0 25px;
+}
+
+.static-content {
+  flex: 1; text-align: left; margin-left: 20px;
+}
+
+.static-text {
+  font-size: 0.95rem; color: #ccc; line-height: 1.5;
+}
+
+/* अलाइनमेंट और 'Justify' सुधार */
+.page-text-justified {
+  text-align: justify; /* टेक्स्ट अब दोनों तरफ से बराबर होगा */
+  line-height: 1.9;
+  color: #d1d1d1;
+  font-size: 1.05rem;
+  padding: 5px 15px;
+  word-spacing: -1px; /* मोबाइल पर बेहतर स्पेसिंग के लिए */
+}
+
+/* विस्तारित बॉक्स का प्रीमियम अवतार */
+.cyber-deck.expanded {
+  min-height: 620px;
+  padding: 35px;
+  border: 1px solid var(--primary);
+  box-shadow: 0 0 45px rgba(0, 242, 254, 0.12);
+  background: #080808;
+}
+
+.deck-header {
+  display: flex; justify-content: space-between; align-items: flex-start;
+  border-bottom: 1px solid rgba(0, 242, 254, 0.1);
+  margin-bottom: 25px; padding-bottom: 20px;
+}
+
+.deck-title { 
+  font-size: 1.2rem; color: var(--primary); 
+  text-transform: uppercase; letter-spacing: 1px;
+}
+
+/* साइबर नेविगेशन बटन */
+.nav-arrow-cyber {
+  background: transparent;
+  border: 1px solid rgba(0, 242, 254, 0.3);
+  color: var(--primary);
+  padding: 10px 22px;
+  font-family: 'Orbitron';
+  font-size: 0.7rem;
+  cursor: pointer;
+  transition: 0.4s;
+}
+
+.nav-arrow-cyber:hover:not(:disabled) {
+  background: var(--primary);
+  color: #000;
+  box-shadow: 0 0 25px var(--primary);
+}
+
+.nav-arrow-cyber:disabled { opacity: 0.2; cursor: not-allowed; }
+
+.deck-close-btn {
+  background: #ff0055; color: white; border: none;
+  padding: 6px 18px; font-family: 'Orbitron';
+  font-size: 0.65rem; cursor: pointer; border-radius: 2px;
+}
+
+.mission-hub { width: 100%; max-width: 600px; text-align: center; animation: fadeIn 0.8s ease; }
+
+.cyber-title {
+  font-family: 'Orbitron'; color: var(--primary); font-size: 1.2rem;
+  margin-bottom: 30px; letter-spacing: 3px; text-shadow: 0 0 15px var(--primary);
+}
+
+.mission-card {
+  background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border);
+  padding: 40px 20px; border-radius: 15px; position: relative;
+  overflow: hidden;
+}
+
+.timer-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin-top: 30px;
+}
+
+.time-box {
+  background: #0d0d0f; border: 1px solid #1a1a1c; padding: 15px 5px;
+  border-radius: 10px; font-size: 0.6rem; color: #555; font-family: 'Orbitron';
+}
+
+.time-val {
+  display: block; font-size: 1.8rem; color: var(--secondary);
+  text-shadow: 0 0 10px var(--secondary); margin-bottom: 5px;
+}
+
+.review-needed { color: var(--secondary); animation: blink 1s infinite; }
+
+@keyframes blink { 50% { opacity: 0.3; } }
+
+/* --- Admin Hidden Icon --- */
+.admin-trigger {
+  position: fixed; top: 15px; right: 15px; width: 10px; height: 10px;
+  background: var(--border); border-radius: 50%; cursor: pointer; opacity: 0.3;
+}
+
+@keyframes slideIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+/* 3D Book Flip Magic */
+.pro-book {
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+  cursor: pointer;
+}
+
+.pro-book:hover {
+  transform: rotateY(-10deg) scale(1.02); /* हल्का सा झुकाव */
+  box-shadow: 20px 20px 50px rgba(0, 0, 0, 0.7);
+}
+
+.book-page-content {
+  column-count: 1; /* मोबाइल/टैबलेट के लिए एक कॉलम */
+  column-gap: 40px;
+  color: #ccc;
+  font-size: 0.9rem;
+  overflow-y: auto;
+  max-height: 250px;
+  padding-right: 10px;
+}
+
+/* स्क्रॉलबार को 'Cyberpunk' लुक दें */
+.book-page-content::-webkit-scrollbar { width: 4px; }
+.book-page-content::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 10px; }
+/* --- Admin Dashboard UI --- */
+.admin-overlay {
+  position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+  background: rgba(0, 0, 0, 0.95); z-index: 2000;
+  display: flex; align-items: center; justify-content: center;
+  backdrop-filter: blur(10px);
+}
+
+.admin-panel {
+  width: 90%; max-width: 400px; padding: 30px;
+  border: 1px solid var(--primary); border-radius: 15px;
+  background: #0d0d0f; box-shadow: 0 0 30px rgba(0, 242, 254, 0.2);
+}
+
+.admin-opt {
+  width: 100%; padding: 15px; margin-bottom: 15px;
+  background: transparent; border: 1px solid #333;
+  color: #ccc; font-family: 'Orbitron'; font-size: 0.8rem;
+  cursor: pointer; transition: 0.3s; text-align: left;
+}
+
+.admin-opt:hover {
+  background: var(--primary); color: black; box-shadow: 0 0 15px var(--primary);
+}
+
+.close-admin {
+  width: 100%; margin-top: 20px; padding: 10px;
+  background: #ff0055; border: none; color: white;
+  font-family: 'Orbitron'; cursor: pointer; border-radius: 5px;
+}
+/* --- Unique Cyber Editor Styles --- */
+.editor-large {
+  max-width: 800px !important; /* एडिटर को बड़ा बनाने के लिए */
+  width: 95%;
+  border: 2px solid var(--secondary);
+  box-shadow: 0 0 40px rgba(57, 255, 20, 0.1);
+}
+
+.cyber-input {
+  width: 100%;
+  padding: 15px;
+  background: #000;
+  border: 1px solid #333;
+  color: var(--primary);
+  font-family: 'Orbitron';
+  margin-bottom: 20px;
+  outline: none;
+}
+
+.cyber-textarea {
+  width: 100%;
+  height: 400px; /* यहाँ तुम जितना चाहो उतना लिखो */
+  background: #050505;
+  border: 1px solid #222;
+  color: #ccc;
+  padding: 20px;
+  font-family: 'Space Grotesk', sans-serif;
+  line-height: 1.6;
+  resize: none; /* साइज़ फिक्स रखने के लिए */
+  outline: none;
+  margin-bottom: 20px;
+}
+
+.cyber-textarea:focus { border-color: var(--primary); }
+
+.editor-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+
+.save-btn { border-color: var(--secondary) !important; color: var(--secondary) !important; text-align: center !important; }
+/* --- Mission Control Styling --- */
+.hub-section { text-align: left; padding: 15px; border-left: 2px solid #222; margin-bottom: 10px; }
+.active-control-card { background: rgba(255, 0, 85, 0.05); padding: 20px; border: 1px dashed #ff0055; border-radius: 8px; }
+
+.history-item {
+  display: flex; align-items: center; background: #080808; padding: 12px; 
+  margin-bottom: 8px; border-radius: 5px; border-left: 3px solid var(--secondary);
+}
+
+.edit-mini {
+  background: none; border: 1px solid #444; color: #888; padding: 5px 10px; 
+  font-size: 0.7rem; cursor: pointer; transition: 0.3s;
+}
+.edit-mini:hover { border-color: var(--primary); color: var(--primary); }
+/* बटन को एक लाइन में सेट करने के लिए */
+.interaction-group {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+/* स्टाइलिश साइबर लाइक बटन */
+.cyber-like-btn {
+  background: rgba(0, 242, 254, 0.05);
+  border: 1px solid var(--primary);
+  color: var(--primary);
+  padding: 6px 12px;
+  font-family: 'Orbitron';
+  font-size: 0.65rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.cyber-like-btn:hover {
+  background: var(--primary);
+  color: #000;
+  box-shadow: 0 0 15px var(--primary);
+}
+/* --- लाइक करने के बाद का 'Stylish' लुक --- */
+.cyber-like-btn.liked {
+  background: rgba(0, 255, 136, 0.1); /* हल्का हरा बैकग्राउंड */
+  border-color: #00ff88; /* हरा बॉर्डर */
+  color: #00ff88; /* हरा टेक्स्ट */
+  box-shadow: 0 0 15px rgba(0, 255, 136, 0.3); /* हरा ग्लो (Glow) */
+  cursor: not-allowed; /* हाथ का निशान हटाकर 'Not Allowed' दिखाना */
+  text-shadow: 0 0 5px #00ff88;
+}
+
+/* लाइक करने के बाद बटन थोड़ा सा चमकना (Pulse) चाहिए */
+.cyber-like-btn.liked {
+  animation: likedPulse 2s infinite ease-in-out;
+}
+
+@keyframes likedPulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.7; }
+  100% { opacity: 1; }
+}
+.system-log-area {
+  margin-top: 30px; border-top: 1px dashed rgba(0, 242, 254, 0.2); padding-top: 15px;
+}
+.log-header { font-family: 'Orbitron'; color: var(--primary); font-size: 0.7rem; margin-bottom: 10px; }
+.log-list { 
+  max-height: 150px; overflow-y: auto; background: rgba(0,0,0,0.3); 
+  padding: 10px; border-radius: 4px; margin-bottom: 10px;
+}
+.log-entry { font-family: 'monospace'; font-size: 0.8rem; margin-bottom: 5px; border-left: 2px solid #333; padding-left: 8px; }
+.log-time { color: #555; margin-right: 10px; }
+.log-msg { color: #00ff88; }
+.log-input-group input {
+  width: 100%; background: transparent; border: 1px solid #333; color: var(--primary);
+  padding: 8px; font-family: 'Orbitron'; font-size: 0.7rem; outline: none;
+}
+/* इनपुट और बटन को एक कतार में रखने के लिए */
+.log-input-group {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.log-submit-btn {
+  background: transparent;
+  border: 1px solid var(--primary);
+  color: var(--primary);
+  padding: 8px 15px;
+  font-family: 'Orbitron';
+  font-size: 0.65rem;
+  cursor: pointer;
+  transition: 0.3s;
+  text-shadow: 0 0 5px var(--primary);
+}
+
+.log-submit-btn:hover {
+  background: var(--primary);
+  color: #000;
+  box-shadow: 0 0 20px var(--primary);
+}
+/* --- 🛡️ प्रोफाइल सेटअप फॉर्म (Modal) स्टाइल --- */
+.cyber-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.95); /* पूरी स्क्रीन डार्क हो जाएगी */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999; /* यह सबसे ऊपर दिखेगा */
+  backdrop-filter: blur(5px); /* पीछे का सब हल्का धुंधला हो जाएगा */
+}
+
+.cyber-modal {
+  background: #0a0a0a;
+  border: 2px solid var(--primary); /* आपकी नियॉन ब्लू बॉर्डर */
+  padding: 30px;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 0 30px var(--primary);
+  border-radius: 5px;
+}
+
+.cyber-modal h3 {
+  color: var(--primary);
+  font-family: 'Orbitron';
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+}
+
+.cyber-modal p {
+  color: #888;
+  font-size: 0.8rem;
+  margin-bottom: 20px;
+}
+
+.cyber-modal input, .cyber-modal select {
+  width: 100%;
+  background: #111;
+  border: 1px solid #333;
+  color: #fff;
+  padding: 12px;
+  margin-bottom: 15px;
+  font-family: 'Orbitron';
+  font-size: 0.8rem;
+  outline: none;
+}
+
+.cyber-modal input:focus {
+  border-color: var(--primary);
+}
+
+.cyber-btn-primary {
+  width: 100%;
+  background: var(--primary);
+  color: #000;
+  border: none;
+  padding: 12px;
+  font-family: 'Orbitron';
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.cyber-btn-primary:hover {
+  box-shadow: 0 0 20px var(--primary);
+  transform: scale(1.02);
+}
+.login-gate {
+  padding: 40px 20px; text-align: center;
+}
+.login-card {
+  background: rgba(0,0,0,0.5); border: 1px solid var(--primary);
+  padding: 30px; border-radius: 8px; box-shadow: 0 0 20px rgba(0, 242, 254, 0.1);
+}
+.google-login-btn {
+  width: 100%; background: #4285F4; color: white; border: none;
+  padding: 12px; font-family: 'Orbitron'; cursor: pointer; margin-bottom: 20px;
+}
+.divider { color: #444; margin: 20px 0; font-size: 0.8rem; }
+.phone-form input {
+  width: 100%; background: #111; border: 1px solid #333; color: white;
+  padding: 10px; margin-bottom: 10px; font-family: 'monospace';
+}
+.phone-form button {
+  width: 100%; background: transparent; border: 1px solid var(--primary);
+  color: var(--primary); padding: 10px; font-family: 'Orbitron'; cursor: pointer;
+}
+#recaptcha-container { margin-top: 10px; }
