@@ -1,0 +1,51 @@
+/* Navbar.css - द फ्लोटिंग मैजिक */
+.floating-nav {
+  position: fixed;
+  bottom: 20px; /* ज़मीन से थोड़ा ऊपर 'तैरता' हुआ */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 400px;
+  background: rgba(15, 15, 18, 0.75); /* पारदर्शी */
+  backdrop-filter: blur(15px); /* धुंधला (Glass effect) */
+  border: 1px solid rgba(0, 242, 254, 0.2);
+  border-radius: 50px; /* एकदम गोल कोने */
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px 5px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+  z-index: 1000;
+}
+
+.nav-item {
+  background: none;
+  border: none;
+  color: #888;
+  font-size: 10px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: 0.3s;
+  padding: 10px 15px;
+  position: relative;
+}
+
+/* एक्टिव बटन के लिए नियॉन ग्लो */
+.nav-item.active {
+  color: var(--primary);
+  text-shadow: 0 0 10px var(--primary);
+}
+
+.nav-item.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 5px;
+  height: 5px;
+  background: var(--primary);
+  border-radius: 50%;
+  box-shadow: 0 0 10px var(--primary);
+}

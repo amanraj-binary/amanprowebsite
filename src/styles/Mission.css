@@ -1,0 +1,73 @@
+/* Mission Control Styles */
+.mission-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  width: 100%;
+  max-width: 500px;
+  margin-top: 30px;
+}
+
+.mission-card {
+  background: rgba(10, 10, 15, 0.8);
+  border-left: 4px solid var(--primary);
+  border-radius: 12px;
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+.mission-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 15px;
+}
+
+.mission-title {
+  font-size: 1rem;
+  color: #fff;
+  letter-spacing: 1px;
+}
+
+.countdown-timer {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 14px;
+  color: var(--primary);
+  text-shadow: 0 0 8px var(--primary);
+}
+
+/* Progress Bar Logic */
+.progress-container {
+  height: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+  margin: 15px 0 5px;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary), #00ff88);
+  border-radius: 3px;
+  transition: width 0.5s ease;
+  box-shadow: 0 0 10px var(--primary);
+}
+
+.mission-footer {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  color: #888;
+  margin-top: 10px;
+}
+
+.abort-btn {
+  background: none;
+  border: 1px solid #ff4444;
+  color: #ff4444;
+  font-size: 9px;
+  padding: 2px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+}

@@ -1,6 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getDatabase } from "firebase/database";
 import { getAuth } from "firebase/auth"; // ✅ 1. इसे जोड़ें
+import { getStorage } from "firebase/storage"; // 🛡️ 1. इसे जोड़ें
 
 const firebaseConfig = {
   apiKey: "AIzaSyCO0WF_Bbkqx_7-_TfQigs-uyUSRTgnR0w",
@@ -16,5 +17,6 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 const auth = getAuth(app); // ✅ 2. इसे यहाँ चालू करें
+const storage = getStorage(app); // 🛡️ 2. इसे यहाँ चालू करें
 
-export { db, auth }; // ✅ 3. यहाँ 'auth' को बाहर भेजें (Export करें)
+export { db, auth, storage }; // ✅ 3. यहाँ 'auth' को बाहर भेजें (Export करें)

@@ -1,0 +1,74 @@
+.admin-panel {
+  background: rgba(10, 10, 11, 0.85);
+  backdrop-filter: blur(12px); /* ग्लास इफ़ेक्ट */
+  border: 1px solid rgba(0, 242, 254, 0.3);
+  padding: 35px;
+  border-radius: 20px;
+  max-width: 550px;
+  margin: 30px auto;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 242, 254, 0.05);
+}
+
+.cyber-input {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  border: 1px solid #1a1a1b;
+  padding: 18px; /* बड़े और आरामदायक स्पेस */
+  margin-bottom: 25px;
+  color: #fff;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  letter-spacing: 1px;
+  transition: all 0.4s ease;
+}
+
+.cyber-input:focus {
+  border-color: var(--primary);
+  background: rgba(0, 242, 254, 0.05);
+  box-shadow: 0 0 15px rgba(0, 242, 254, 0.2);
+  outline: none;
+}
+
+/* फोटो अपलोड बटन को 'Digital Scan' वाला लुक देना */
+.file-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 25px;
+  border: 2px dashed rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  cursor: pointer;
+  margin-bottom: 30px;
+  transition: 0.3s;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.file-label:hover {
+  border-color: var(--primary);
+  background: rgba(0, 242, 254, 0.05);
+  color: var(--primary);
+}
+
+.file-label span {
+  font-size: 0.8rem;
+  margin-top: 10px;
+  opacity: 0.6;
+}
+
+.active-tab {
+  flex: 1; padding: 10px; background: var(--primary); color: #000;
+  border: none; font-weight: bold; cursor: pointer;
+}
+
+.inactive-tab {
+  flex: 1; padding: 10px; background: #111; color: var(--primary);
+  border: 1px solid var(--primary); cursor: pointer; opacity: 0.5;
+}
+
+.inactive-tab:hover { opacity: 1; }
+
+textarea.cyber-input {
+  resize: vertical;
+  line-height: 1.5;
+}

@@ -1,0 +1,143 @@
+/* Hubs.css - कार्ड्स के लिए प्रो-स्टाडलिंग */
+.hubs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  padding: 10px;
+}
+
+.elite-card {
+  background: rgba(15, 15, 18, 0.9);
+  border: 1px solid rgba(0, 242, 254, 0.2);
+  border-radius: 12px;
+  overflow: hidden; /* ताकि फोटो कोनों से बाहर न निकले */
+  transition: 0.4s ease;
+  position: relative;
+}
+
+.elite-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--primary);
+  box-shadow: 0 10px 30px rgba(0, 242, 254, 0.15);
+}
+
+.card-image-container {
+  width: 100%;
+  height: 160px;
+  background: #000;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* फोटो को बिना स्ट्रेच किए फिट करेगा */
+  opacity: 0.8;
+  transition: 0.5s;
+}
+
+.elite-card:hover .card-image {
+  opacity: 1;
+  scale: 1.05;
+}
+
+.card-content {
+  padding: 15px;
+}
+
+.card-tag {
+  font-size: 10px;
+  background: var(--primary);
+  color: #000;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+/* Interactions Styling */
+.interaction-box { margin-top: 15px; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 10px; }
+.action-bar { display: flex; gap: 15px; margin-bottom: 10px; }
+.like-btn { background: none; border: none; color: #fff; cursor: pointer; font-size: 1.1rem; transition: 0.3s; }
+.like-btn.active { color: #ff0055; text-shadow: 0 0 10px #ff0055; }
+.comment-count { font-size: 12px; color: var(--primary); opacity: 0.7; padding-top: 5px; }
+
+.comment-input-row .cyber-input { font-size: 11px; padding: 8px; margin-bottom: 10px; border-color: rgba(0,242,254,0.1); }
+.comments-list { max-height: 150px; overflow-y: auto; margin-top: 10px; }
+.comment-item { background: rgba(255,255,255,0.02); padding: 8px; border-radius: 6px; margin-bottom: 5px; border-left: 2px solid rgba(0,242,254,0.1); }
+.comment-user { font-size: 10px; font-weight: bold; color: var(--primary); }
+.royal-tag { color: #ffd700; text-shadow: 0 0 5px #ffd700; }
+.comment-text { font-size: 11px; color: #ccc; margin-top: 2px; }
+
+.comment-header { display: flex; justify-content: space-between; }
+.delete-comment { background: none; border: none; color: #ff4444; cursor: pointer; font-size: 14px; }
+
+/* Admin Post Controls */
+.post-admin-actions { position: absolute; top: 10px; right: 10px; display: flex; gap: 5px; z-index: 5; }
+.admin-icon-btn { background: rgba(0,0,0,0.7); border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 4px; border-radius: 4px; font-size: 10px; cursor: pointer; }
+.admin-icon-btn:hover { border-color: var(--primary); color: var(--primary); }
+
+.red-dot {
+  position: absolute; top: 0; right: 0;
+  width: 8px; height: 8px; background: #ff0055;
+  border-radius: 50%; box-shadow: 0 0 10px #ff0055;
+}
+.notif-dropdown {
+  position: absolute; top: 40px; right: 0; width: 200px;
+  background: #0a0a0b; border: 1px solid var(--primary);
+  z-index: 100; border-radius: 8px; max-height: 300px; overflow-y: auto;
+}
+.notif-item { padding: 8px; border-bottom: 1px solid #222; cursor: pointer; font-size: 9px; }
+.notif-item.unread { background: rgba(0, 242, 254, 0.05); }
+.notif-item span { opacity: 0.5; font-size: 8px; }
+
+/* 🔔 Notification Dropdown Header & Close Button */
+.notif-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05); /* पतली डिवाइडर लाइन */
+}
+.close-notif-btn {
+  background: none;
+  border: none;
+  color: #ff4444; /* लाल रंग */
+  cursor: pointer;
+  font-size: 16px; /* '×' के लिए थोड़ा बड़ा साइज़ */
+  line-height: 1;
+  padding: 0;
+  transition: 0.3s;
+}
+.close-notif-btn:hover {
+  color: #ff0055; /* Hover करने पर गहरा लाल नियॉन */
+  text-shadow: 0 0 5px #ff0055;
+}
+
+/* 🔍 Search & Sort Controls */
+.filter-controls {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-bar {
+  flex: 1;
+  min-width: 200px;
+  max-width: 400px;
+}
+
+.sort-select {
+  width: auto;
+  min-width: 120px;
+}
+
+/* इनपुट को थोड़ा और स्लीक बनाना */
+.cyber-input {
+  background: rgba(0, 0, 0, 0.4) !important;
+  border: 1px solid rgba(0, 242, 254, 0.3) !important;
+  color: var(--primary) !important;
+}
